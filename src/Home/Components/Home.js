@@ -14,7 +14,7 @@ export default function DataLoader() {
   // Here we define the function getData which fetches our API data
      function getData () {
       // Select API endpoint
-      fetch("your-api-here")
+      fetch("your WP API here")
       // Turn the data into something we can use I.E. JSON
       .then(response => response.json())
       // Set the data in the state
@@ -40,7 +40,9 @@ export default function DataLoader() {
         <Grid.Column 
         mobile={12} tablet={4} computer={4} className={'post-column'}
         style={{backgroundImage: `url(${d._embedded['wp:featuredmedia']['0'].source_url}})`}}>
-          <a>{d.title.rendered}</a>
+          <div className={"post-column-text-container"}>
+          <a className={"post-column-text"}>{d.title.rendered}</a>
+          </div>
         </Grid.Column>
     ))
   );

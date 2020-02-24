@@ -17,3 +17,23 @@
   grid-column-gap: 20px;
   display: grid;
 }
+
+.post-column-text-container {
+
+  height: 250px;
+  width: 400px;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.post-column-text-container:hover {
+  opacity: 0.8;
+  background-color: blue;
+}
+
+.post-column-text {
+  color: yellow;
+  text-align: center;
+}
