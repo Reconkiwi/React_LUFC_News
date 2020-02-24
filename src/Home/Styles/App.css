@@ -1,0 +1,29 @@
+.homepage-posts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.post-column {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  width: 400px;
+}
+
+.homepage-posts-container {
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  display: -ms-grid;
+  display: grid;
+}
+/*# sourceMappingURL=App.css.map */
