@@ -19,7 +19,6 @@
 }
 
 .post-column-text-container {
-
   height: 250px;
   width: 400px;
   opacity: 0;
@@ -30,10 +29,10 @@
 
 .post-column-text-container:hover {
   opacity: 0.8;
-  background-color: blue;
+  background-color: #02427c;
 }
 
 .post-column-text {
-  color: yellow;
+  color: #fff;
   text-align: center;
 }
