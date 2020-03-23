@@ -1,21 +1,40 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
 import Logo from "../../Images/Common/header-logo.png";
 
-const DEFAULT_CLASSNAME = "navbar";
+import { Link } from 'react-router-dom';
+
+
+import '../Styles/_Navbar.scss';
+
+import Home from '../../Home/Components/Home';
+import About from '../../Home/Components/About';
+import Contact from '../../Home/Components/Contact';
+import Lufc_Live from '../../Home/Components/Lufc_live';
+
+
+const DEFAULT_CLASSNAME = "navigation";
 
 export default function Navbar() {
   return (
-    <Grid columns={7} className={DEFAULT_CLASSNAME}>
-      <Grid.Column>NEWS</Grid.Column>
-      <Grid.Column>ABOUT</Grid.Column>
-      <Grid.Column>LUFC ZONE</Grid.Column>
-      <Grid.Column>
-        <img src={Logo} className={`${DEFAULT_CLASSNAME}__logo`} />
-      </Grid.Column>
-      <Grid.Column>LUFC LIVE</Grid.Column>
-      <Grid.Column>MERCH</Grid.Column>
-      <Grid.Column>CONTACT</Grid.Column>
-    </Grid>
+
+    <div columns={7} className={DEFAULT_CLASSNAME}>
+      <div className={`${DEFAULT_CLASSNAME}__list`}>
+        <div className={`${DEFAULT_CLASSNAME}__item`}>NEWS</div>
+
+        <Link to="/about"><div className={`${DEFAULT_CLASSNAME}__item`}>ABOUT</div></Link>
+
+        <div className={`${DEFAULT_CLASSNAME}__item`}>LUFC ZONE</div>
+
+        <Link to="/"><div><img alt="LUFC logo" src={Logo} className={`${DEFAULT_CLASSNAME}__item-logo`} /></div></Link>
+
+        <Link to="/lufcLive"><div className={`${DEFAULT_CLASSNAME}__item`}>LUFC LIVE</div></Link>
+
+        <div className={`${DEFAULT_CLASSNAME}__item`}>MERCH</div>
+
+        <Link to="/contact"><div className={`${DEFAULT_CLASSNAME}__item`}>CONTACT</div></Link>
+    
+      </div>
+    </div>
+      
   );
 }
