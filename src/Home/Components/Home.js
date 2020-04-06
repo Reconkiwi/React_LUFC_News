@@ -1,12 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-
-
-
-
-import Navbar from "../../Common/Components/Navbar";
 import HeroVideo from "../../Common/Components/HeroVideo";
 import HeroOverlay from "../../Common/Components/HeroOverlay";
 import RecentNews from "../../Common/Components/RecentNews";
@@ -16,41 +9,44 @@ import Products from "../../Common/Components/Products";
 import Partners from "../../Common/Components/Partners";
 import Footer from "../../Common/Components/Footer";
 
-
-import aboutPage from './About';
-import contactPage from './Contact';
-import lufcLive from './Lufc_live';
-
 import { Segment } from "semantic-ui-react";
 
-export default function Routing() {
+export default function Home() {
+  const [data, setData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
+
+  const dataIsLoaded =
+    data !== undefined && homeData.acf !== undefined ? true : false;
+
+  useEffect(() => {
+    function getACFData() {
+      fetch("http://localhost:8888/lufcACFstuff/wp-json/acf/v3/pages/2")
+        .then((response) => response.json())
+        .then((homeData) => setHomeData(homeData));
+
+      console.log(homeData);
+    }
+    function getWordpressPosts() {
+      fetch("http://localhost:8888/lufcACFstuff/wp-json/wp/v2/posts?_embed")
+        .then((response) => response.json())
+        .then((data) => setData(data));
+
+      console.log(data);
+    }
+    getACFData();
+    getWordpressPosts();
+  }, [dataIsLoaded]);
+
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={aboutPage} />
-          <Route path="/lufcLive" component={lufcLive} />
-          <Route path="/contact"  component={contactPage}/>
-        </Switch>
-      </div>
-    </Router>
-    
+    <Segment>
+      <HeroVideo />
+      <HeroOverlay />
+      <RecentNews RecentNews={data} />
+      {/* <About AboutInfo={homeData.acf} /> */}
+      <Highlights />
+      <Products Products={homeData.acf} />
+      <Partners Partners={homeData.acf} />
+      <Footer />
+    </Segment>
   );
 }
-
-const Home = () => (
-
-  <Segment>
-  <HeroVideo />
-  <HeroOverlay />
-  <RecentNews />
-  <About />
-  <Highlights />
-  <Products />
-  <Partners />
-  <Footer />
-</Segment>
-
-);
